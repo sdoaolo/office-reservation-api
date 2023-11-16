@@ -21,7 +21,7 @@ class EmployeeSeat (
     val seat: Seat,
 
     @Column(name = "is_valid", nullable = false)
-    val isValid: Boolean,
+    var isValid: Boolean,
 
     @Column(name = "reserve_date", nullable = false)
     val reserveDate: LocalDate = LocalDate.now()
