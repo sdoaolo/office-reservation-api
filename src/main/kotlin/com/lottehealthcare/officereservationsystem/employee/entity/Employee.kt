@@ -8,24 +8,27 @@ import javax.persistence.*
 @Entity
 @Table(name = "employee")
 class Employee (
-
+    @Column(nullable = false, length = 20)
+    var employeName: String
+) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employeeId")
-    val employeeId: Long? = null, //id pk값이므로, 변경불가인 val 사용
-
-    @Column(nullable = false, length = 20)
-    var name: String, //이름은 변경될 수 있으므로 var
-
-    @Column(nullable = false)
-    var employeeNumber: Short,
+    val employeeId: Long? = null
 
     @Column
     @Enumerated(EnumType.STRING)
-    var currentWorkType : WorkType,
+    var currentWorkType : WorkType?= WorkType.미출근
+
+    @Column(nullable = false)
+    var employeeNumber: Short? = 0
 
     @Column
     @CreatedDate
-    val createdDate : LocalDate = LocalDate.now() // 생성 날짜는 생성 시 설정되고 변경되지 않음
+    val createdDate : LocalDate = LocalDate.now()
 
-)
+    @PostPersist
+    fun setEmployeeNumber() {
+        employeeNumber = employeeId?.toShort()!!
+    }
+}
