@@ -5,7 +5,14 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
+
+	//Entity
 	kotlin("plugin.jpa") version "1.6.21"
+	id ("org.jetbrains.kotlin.plugin.allopen") version "1.6.10" //open (상속)
+
+}
+allOpen {
+	annotation("javax.persistence.Entity")
 }
 
 group = "com.lottehealthcare"
