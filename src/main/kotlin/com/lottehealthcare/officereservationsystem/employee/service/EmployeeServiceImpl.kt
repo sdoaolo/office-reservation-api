@@ -4,8 +4,10 @@ import com.lottehealthcare.officereservationsystem.employee.dto.response.Current
 import com.lottehealthcare.officereservationsystem.employee.entity.Employee
 import com.lottehealthcare.officereservationsystem.employee.repository.EmployeeRepository
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 
 @Service
+@Transactional
 class EmployeeServiceImpl (
     private val employeeRepository: EmployeeRepository
 ): EmployeeService {
