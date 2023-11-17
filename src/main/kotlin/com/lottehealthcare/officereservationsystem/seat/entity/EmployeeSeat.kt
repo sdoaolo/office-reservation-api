@@ -7,10 +7,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "employee_seat", uniqueConstraints = [UniqueConstraint(columnNames = ["employee_id", "seat_id", "reserve_date"])])
 class EmployeeSeat (
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    val id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false)
@@ -23,6 +19,12 @@ class EmployeeSeat (
     @Column(name = "is_valid", nullable = false)
     var isValid: Boolean,
 
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    val id: Long? = null
+
     @Column(name = "reserve_date", nullable = false)
     val reserveDate: LocalDate = LocalDate.now()
-)
+}
