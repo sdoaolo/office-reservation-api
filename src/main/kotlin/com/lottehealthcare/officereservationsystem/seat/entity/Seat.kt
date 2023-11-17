@@ -12,7 +12,7 @@ class Seat (
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employeeId")
+    @Column(name = "seatId")
     val seatId: Long? = null
 
     @Column(nullable = false)
