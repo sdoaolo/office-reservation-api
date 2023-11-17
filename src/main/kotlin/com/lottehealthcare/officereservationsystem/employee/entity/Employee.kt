@@ -9,8 +9,8 @@ import javax.persistence.*
 @Table(name = "employee")
 class Employee (
     @Column(nullable = false, length = 20)
-    var employeName: String
-) {
+    var employeeName: String
+){
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employeeId")
