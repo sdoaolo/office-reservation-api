@@ -6,6 +6,7 @@ package com.lottehealthcare.officereservationsystem.seat.controller
 import com.lottehealthcare.officereservationsystem.common.ApplicationResponseDto
 import com.lottehealthcare.officereservationsystem.common.ResponseStatus
 import com.lottehealthcare.officereservationsystem.employee.dto.request.RegisterNewEmployeeDto
+import com.lottehealthcare.officereservationsystem.employee.dto.response.CurrentWorkStatusDto
 import com.lottehealthcare.officereservationsystem.employee.dto.response.SimpleImformationEmployeeDto
 import com.lottehealthcare.officereservationsystem.employee.service.EmployeeService
 import org.springframework.web.bind.annotation.*
@@ -29,7 +30,17 @@ class EmployeeController(
     }
     @GetMapping
     @RequestMapping("/work-status")
-    fun getAllEmployeeWorkStatus() : String {
-        return "모든 직원의 근무상태를 반환합니다."
+    fun getAllEmployeeWorkStatus() : ApplicationResponseDto<List<CurrentWorkStatusDto>> {
+
+        val employeeList = employeeService.getAllEmployeeWorkStatus()
+
+        return ApplicationResponseDto(
+            ResponseStatus.SUCCESS,
+            "현재 직원들의 근무 상태입니다.",
+            ResponseStatus.SUCCESS.code,
+            true,
+            employeeList
+        )
     }
+
 }

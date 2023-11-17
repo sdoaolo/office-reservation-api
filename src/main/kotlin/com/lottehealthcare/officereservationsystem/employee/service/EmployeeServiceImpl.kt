@@ -13,4 +13,9 @@ class EmployeeServiceImpl (
         val createdEmployee = employeeRepository.save(employee)
         return createdEmployee
     }
+    override fun getAllEmployeeWorkStatus(): List<CurrentWorkStatusDto> {
+
+        val employeeList = employeeRepository.findAll()
+        return employeeList.map { it -> CurrentWorkStatusDto.fromEntity(it) }
+    }
 }
