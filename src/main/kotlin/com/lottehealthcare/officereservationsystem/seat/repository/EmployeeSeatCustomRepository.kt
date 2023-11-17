@@ -3,5 +3,6 @@ package com.lottehealthcare.officereservationsystem.seat.repository
 import com.lottehealthcare.officereservationsystem.seat.entity.EmployeeSeat
 
 interface EmployeeSeatCustomRepository {
-    fun findUsingInfo(seatNumber: Short?): EmployeeSeat?
+    fun findBySeatNumber(seatNumber: Short?): EmployeeSeat?
+    fun findByEmployeeNumber(employeeNumber: Short?): EmployeeSeat?
 }

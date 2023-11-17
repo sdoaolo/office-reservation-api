@@ -11,11 +11,18 @@ class EmployeeSeatCustomRepositoryImpl (
 ): EmployeeSeatCustomRepository {
 
     private val qEmployeeSeat = QEmployeeSeat.employeeSeat
-    override fun findUsingInfo(seatNumber: Short?): EmployeeSeat? {
+    override fun findBySeatNumber(seatNumber: Short?): EmployeeSeat? {
             return jpaQueryFactory
                 .selectFrom(qEmployeeSeat)
                 .where(qEmployeeSeat.seat.seatNumber.eq(seatNumber),
                     qEmployeeSeat.isValid.isTrue)
                 .fetchOne()
+    }
+    override fun findByEmployeeNumber(employeeNumber: Short?): EmployeeSeat? {
+        return jpaQueryFactory
+            .selectFrom(qEmployeeSeat)
+            .where(qEmployeeSeat.employee.employeeNumber.eq(employeeNumber),
+                qEmployeeSeat.isValid.isTrue)
+            .fetchOne()
     }
 }
