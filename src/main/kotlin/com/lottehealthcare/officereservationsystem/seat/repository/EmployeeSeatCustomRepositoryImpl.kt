@@ -4,6 +4,7 @@ import com.lottehealthcare.officereservationsystem.seat.entity.EmployeeSeat
 import com.lottehealthcare.officereservationsystem.seat.entity.QEmployeeSeat
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
+import javax.persistence.LockModeType
 
 @Repository
 class EmployeeSeatCustomRepositoryImpl (
@@ -16,6 +17,7 @@ class EmployeeSeatCustomRepositoryImpl (
                 .selectFrom(qEmployeeSeat)
                 .where(qEmployeeSeat.seat.seatNumber.eq(seatNumber),
                     qEmployeeSeat.isValid.isTrue)
+                .setLockMode(LockModeType.PESSIMISTIC_WRITE) // 비관적 Lock 적용
                 .fetchOne()
     }
     override fun findByEmployeeNumber(employeeNumber: Short?): EmployeeSeat? {

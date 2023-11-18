@@ -1,6 +1,3 @@
-
-
-
 package com.lottehealthcare.officereservationsystem.seat.controller
 
 import com.lottehealthcare.officereservationsystem.common.ApplicationResponseDto
@@ -19,30 +16,24 @@ class EmployeeController(
     @PostMapping
     fun registerNewEmployee(@RequestBody registerEmployee: RegisterNewEmployeeDto): ApplicationResponseDto<SimpleImformationEmployeeDto> {
 
-        val employee = employeeService.registerNewEmployee(registerEmployee.toEntity())
         return ApplicationResponseDto(
             ResponseStatus.SUCCESS,
             "직원을 등록했습니다.",
             ResponseStatus.SUCCESS.code,
             true,
-            SimpleImformationEmployeeDto.fromEntity(employee)
+            SimpleImformationEmployeeDto.fromEntity(employeeService.registerNewEmployee(registerEmployee.toEntity()))
         )
     }
     @GetMapping
     @RequestMapping("/work-status")
-    fun getAllEmployeeWorkStatus(
-        @RequestParam("page") page: Int
-    ) : ApplicationResponseDto<List<CurrentWorkStatusDto>> {
-
-        val employeePage = employeeService.getAllEmployeeWorkStatus(page)
-        val employeeList = employeePage.content
+    fun getAllEmployeeWorkStatus(@RequestParam("page") page: Int) : ApplicationResponseDto<List<CurrentWorkStatusDto>> {
 
         return ApplicationResponseDto(
             ResponseStatus.SUCCESS,
             "현재 직원들의 근무 상태입니다.",
             ResponseStatus.SUCCESS.code,
             true,
-            employeeList
+            employeeService.getAllEmployeeWorkStatus(page).content
         )
     }
 }
