@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface EmployeeSeatRepository: JpaRepository<EmployeeSeat, Long>, EmployeeSeatCustomRepository {
     fun findByEmployeeAndSeat(employee: Employee, seat: Seat): EmployeeSeat?
+    fun countByIsValidTrue(): Long
 }

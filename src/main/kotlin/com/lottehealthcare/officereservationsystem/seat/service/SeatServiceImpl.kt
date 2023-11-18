@@ -35,7 +35,8 @@ class SeatServiceImpl (
 
     override fun makeReservation(reservationInfo: ReservationDto): ReservationDto {
 
-        //체크0) 좌석이 남았는지 (구현 필요)
+        //체크0) 사용가능한 좌석이 남아있는지 확인
+        checkRemainingSeats()
 
         //체크1,2) 예약자, 좌석이 존재하는 번호인지 확인한다.
         val employee = verifiedEmployee(reservationInfo.employeeNumber)
@@ -96,5 +97,15 @@ class SeatServiceImpl (
         val seat = seatRepository.findBySeatNumber(seatNumber)
             ?: throw BusinessException(ErrorMessage.SEAT_NOT_FOUND)
         return seat
+    }
+
+    private fun checkRemainingSeats() {
+        //좌석 자체가 없는경우
+        val activeSeats = employeeSeatRepository.countByIsValidTrue()
+        val totalSeats = seatRepository.count()
+
+        if (totalSeats - activeSeats < 1) {
+            throw BusinessException(ErrorMessage.NO_REMAINING_SEATS)
+        }
     }
 }
