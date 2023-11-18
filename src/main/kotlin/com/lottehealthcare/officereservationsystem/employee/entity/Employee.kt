@@ -18,7 +18,7 @@ class Employee (
 
     @Column
     @Enumerated(EnumType.STRING)
-    var currentWorkType : WorkType?= WorkType.미출근
+    var currentWorkType : WorkType?= WorkType.재택
 
     @Column(nullable = false)
     var employeeNumber: Short? = 0

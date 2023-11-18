@@ -81,7 +81,7 @@ class SeatServiceImpl (
 
         //여기까지 왔으면 취소해도 되는 예약!
         cancelData.isValid = false
-        employee.currentWorkType = WorkType.재택 //(고민) 요구사항에 따라 Default를 재택으로 설정하고, 미출근을 없애는게 맞는지
+        employee.currentWorkType = WorkType.재택
 
         return reservationInfo //단순 취소자와 취소된 좌석번호에 대한 정보만 반환해도 되므로 그대로 반환
     }

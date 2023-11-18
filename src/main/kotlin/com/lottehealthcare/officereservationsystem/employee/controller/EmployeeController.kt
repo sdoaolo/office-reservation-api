@@ -30,9 +30,12 @@ class EmployeeController(
     }
     @GetMapping
     @RequestMapping("/work-status")
-    fun getAllEmployeeWorkStatus() : ApplicationResponseDto<List<CurrentWorkStatusDto>> {
+    fun getAllEmployeeWorkStatus(
+        @RequestParam("page") page: Int
+    ) : ApplicationResponseDto<List<CurrentWorkStatusDto>> {
 
-        val employeeList = employeeService.getAllEmployeeWorkStatus()
+        val employeePage = employeeService.getAllEmployeeWorkStatus(page)
+        val employeeList = employeePage.content
 
         return ApplicationResponseDto(
             ResponseStatus.SUCCESS,
@@ -42,5 +45,4 @@ class EmployeeController(
             employeeList
         )
     }
-
 }
