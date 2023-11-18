@@ -16,5 +16,8 @@ enum class ErrorMessage(
 
     //409 Conflict (서버와 현재 상태 충돌),
     ALREADY_RESERVED_EMPLOYEE(ResponseStatus.CONFLICT,"This user has already completed a reservation"),
-    ALREADY_RESERVED_SEAT(ResponseStatus.CONFLICT,"This seat is already reserved. Please choose a different seat.")
+    ALREADY_RESERVED_SEAT(ResponseStatus.CONFLICT,"This seat is already reserved. Please choose a different seat"),
+
+    //422 Unprocessable Entity : 요청은 명확하나, 처리할 수 없음
+    NO_REMAINING_SEATS(ResponseStatus.UNPROCESSABLE_ENTITY, "There are no remaining seats. ")
 }
