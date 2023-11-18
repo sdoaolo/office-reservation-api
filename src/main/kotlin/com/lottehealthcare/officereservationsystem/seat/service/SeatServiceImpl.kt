@@ -12,8 +12,10 @@ import com.lottehealthcare.officereservationsystem.seat.entity.EmployeeSeat
 import com.lottehealthcare.officereservationsystem.seat.repository.EmployeeSeatRepository
 import com.lottehealthcare.officereservationsystem.seat.repository.SeatRepository
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 
 @Service
+@Transactional
 class SeatServiceImpl (
     private val seatRepository: SeatRepository,
     private val employeeRepository: EmployeeRepository,
