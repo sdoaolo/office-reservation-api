@@ -25,4 +25,13 @@ class EmployeeSeatCustomRepositoryImpl (
                 qEmployeeSeat.isValid.isTrue)
             .fetchOne()
     }
+
+    override fun findByEmployeeSeatNumber(employeeNumber: Short?, seatNumber: Short?): EmployeeSeat? {
+        return  jpaQueryFactory
+            .selectFrom(qEmployeeSeat)
+            .where(qEmployeeSeat.seat.seatNumber.eq(seatNumber),
+                qEmployeeSeat.employee.employeeNumber.eq(employeeNumber),
+                qEmployeeSeat.isValid.isTrue)
+            .fetchOne()
+    }
 }

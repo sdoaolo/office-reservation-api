@@ -8,4 +8,5 @@ interface SeatService {
 
     fun registerNewSeat(seat: RegisterSeatDto): SeatInformationDto
     fun makeReservation(reservationInfo: ReservationDto): ReservationDto
+    fun cancelReservation(reservationInfo: ReservationDto): ReservationDto
 }
