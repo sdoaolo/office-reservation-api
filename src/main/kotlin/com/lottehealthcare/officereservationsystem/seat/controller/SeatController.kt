@@ -40,4 +40,18 @@ class SeatController (
             reservation
         )
     }
+
+    @DeleteMapping("/reservations")
+    fun cancelReservation(@RequestBody reservationDto: ReservationDto) : ApplicationResponseDto<ReservationDto> {
+
+        val cancelReservation = seatService.cancelReservation(reservationDto)
+
+        return ApplicationResponseDto(
+            ResponseStatus.SUCCESS,
+            "좌석 예약이 취소되었습니다.",
+            ResponseStatus.SUCCESS.code,
+            true,
+            cancelReservation
+        )
+    }
 }

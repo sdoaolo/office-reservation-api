@@ -12,6 +12,7 @@ enum class ErrorMessage(
     //404 Not Found
     EMPLOYEE_NOT_FOUND(ResponseStatus.NOT_FOUND,"Employee Not Found"),
     SEAT_NOT_FOUND(ResponseStatus.NOT_FOUND,"Seat Not Found"),
+    RESERVATION_NOT_FOUND(ResponseStatus.NOT_FOUND,"Reservation Not Found"),
 
     //409 Conflict (서버와 현재 상태 충돌),
     ALREADY_RESERVED_EMPLOYEE(ResponseStatus.CONFLICT,"This user has already completed a reservation"),
