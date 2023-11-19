@@ -22,7 +22,7 @@ class EmployeeController(
             "직원을 등록했습니다.",
             ResponseStatus.SUCCESS.code,
             true,
-            SimpleImformationEmployeeDto.fromEntity(employeeService.registerNewEmployee(registerEmployee.toEntity()))
+            employeeService.registerNewEmployee(registerEmployee.toEntity())
         )
     }
     @GetMapping
