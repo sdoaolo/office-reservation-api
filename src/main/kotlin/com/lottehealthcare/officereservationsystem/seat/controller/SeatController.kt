@@ -7,6 +7,7 @@ import com.lottehealthcare.officereservationsystem.seat.dto.request.ReservationD
 import com.lottehealthcare.officereservationsystem.seat.dto.request.RegisterSeatDto
 import com.lottehealthcare.officereservationsystem.seat.service.SeatService
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/seats")
@@ -14,7 +15,7 @@ class SeatController (
     private val seatService: SeatService
 ) {
     @PostMapping
-    fun registerNewSeat(@RequestBody registerSeatDto: RegisterSeatDto): ApplicationResponseDto<SeatInformationDto> {
+    fun registerNewSeat(@RequestBody @Valid registerSeatDto: RegisterSeatDto): ApplicationResponseDto<SeatInformationDto> {
 
         return ApplicationResponseDto(
             ResponseStatus.SUCCESS,
@@ -25,7 +26,7 @@ class SeatController (
         )
     }
     @PostMapping("/reservations")
-    fun makeReservation(@RequestBody reservationDto: ReservationDto): ApplicationResponseDto<ReservationDto> {
+    fun makeReservation(@RequestBody @Valid reservationDto: ReservationDto): ApplicationResponseDto<ReservationDto> {
 
         return ApplicationResponseDto(
             ResponseStatus.SUCCESS,
@@ -37,7 +38,7 @@ class SeatController (
     }
 
     @DeleteMapping("/reservations")
-    fun cancelReservation(@RequestBody reservationDto: ReservationDto) : ApplicationResponseDto<ReservationDto> {
+    fun cancelReservation(@RequestBody @Valid reservationDto: ReservationDto) : ApplicationResponseDto<ReservationDto> {
 
         return ApplicationResponseDto(
             ResponseStatus.SUCCESS,

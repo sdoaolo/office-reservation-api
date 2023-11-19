@@ -3,6 +3,7 @@ package com.lottehealthcare.officereservationsystem.employee.dto.response
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.lottehealthcare.officereservationsystem.employee.WorkType
 import com.lottehealthcare.officereservationsystem.employee.entity.Employee
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class CurrentWorkStatusDto(
     var name: String,
