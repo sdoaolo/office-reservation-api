@@ -2,6 +2,7 @@ package com.lottehealthcare.officereservationsystem.employee.service
 
 import com.lottehealthcare.officereservationsystem.employee.WorkType
 import com.lottehealthcare.officereservationsystem.employee.dto.response.CurrentWorkStatusDto
+import com.lottehealthcare.officereservationsystem.employee.dto.response.SimpleImformationEmployeeDto
 import com.lottehealthcare.officereservationsystem.employee.entity.Employee
 import com.lottehealthcare.officereservationsystem.employee.repository.EmployeeRepository
 import com.lottehealthcare.officereservationsystem.seat.repository.EmployeeSeatRepository
@@ -21,9 +22,8 @@ class EmployeeServiceImpl (
     private var size: Int = 20 // application.yml 단에서 변경 가능 (Default=20으로 설정)
 
 ): EmployeeService {
-    override fun registerNewEmployee(employee: Employee): Employee {
-        val createdEmployee = employeeRepository.save(employee)
-        return createdEmployee
+    override fun registerNewEmployee(employee: Employee): SimpleImformationEmployeeDto {
+        return  SimpleImformationEmployeeDto.fromEntity(employeeRepository.save(employee))
     }
     override fun getAllEmployeeWorkStatus(page: Int): Page<CurrentWorkStatusDto> {
 
