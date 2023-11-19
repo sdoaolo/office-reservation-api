@@ -7,6 +7,7 @@ import com.lottehealthcare.officereservationsystem.employee.dto.response.Current
 import com.lottehealthcare.officereservationsystem.employee.dto.response.SimpleImformationEmployeeDto
 import com.lottehealthcare.officereservationsystem.employee.service.EmployeeService
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/employees")
@@ -14,7 +15,7 @@ class EmployeeController(
     private val employeeService: EmployeeService
 ){
     @PostMapping
-    fun registerNewEmployee(@RequestBody registerEmployee: RegisterNewEmployeeDto): ApplicationResponseDto<SimpleImformationEmployeeDto> {
+    fun registerNewEmployee(@RequestBody @Valid registerEmployee: RegisterNewEmployeeDto): ApplicationResponseDto<SimpleImformationEmployeeDto> {
 
         return ApplicationResponseDto(
             ResponseStatus.SUCCESS,
