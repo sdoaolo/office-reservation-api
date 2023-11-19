@@ -1,4 +1,4 @@
-package com.lottehealthcare.officereservationsystem.seat.controller
+package com.lottehealthcare.officereservationsystem.employee.controller
 
 import com.lottehealthcare.officereservationsystem.common.ApplicationResponseDto
 import com.lottehealthcare.officereservationsystem.common.ResponseStatus

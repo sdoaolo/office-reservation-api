@@ -1,4 +1,4 @@
-package com.lottehealthcare.officereservationsystem.seat
+package com.lottehealthcare.officereservationsystem.seat.controller
 
 import io.mockk.every
 import io.mockk.mockk

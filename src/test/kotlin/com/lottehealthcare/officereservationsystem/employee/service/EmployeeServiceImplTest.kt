@@ -1,10 +1,9 @@
-package com.lottehealthcare.officereservationsystem.employee
+package com.lottehealthcare.officereservationsystem.employee.service
 
+import com.lottehealthcare.officereservationsystem.employee.WorkType
 import com.lottehealthcare.officereservationsystem.employee.dto.response.SimpleImformationEmployeeDto
 import com.lottehealthcare.officereservationsystem.employee.entity.Employee
 import com.lottehealthcare.officereservationsystem.employee.repository.EmployeeRepository
-import com.lottehealthcare.officereservationsystem.employee.service.EmployeeService
-import com.lottehealthcare.officereservationsystem.employee.service.EmployeeServiceImpl
 import com.lottehealthcare.officereservationsystem.seat.entity.EmployeeSeat
 import com.lottehealthcare.officereservationsystem.seat.entity.Seat
 import com.lottehealthcare.officereservationsystem.seat.repository.EmployeeSeatRepository
@@ -71,10 +70,12 @@ class EmployeeServiceImplTest {
         val employees = mutableListOf(
             Employee("강지은").apply {
                 employeeNumber = 1.toShort()
-                currentWorkType = WorkType.오피스출근 },
+                currentWorkType = WorkType.오피스출근
+            },
             Employee("홍길동").apply {
                 employeeNumber = 2.toShort()
-                currentWorkType = WorkType.재택 }
+                currentWorkType = WorkType.재택
+            }
         )
         for (i in 3..20) {
             employees.add( Employee("Employee$i").apply { employeeNumber = i.toShort() } )
