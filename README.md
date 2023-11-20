@@ -133,7 +133,7 @@ Testing
         val message: String, //응답 커스텀 메세지 
         val code : Long?, //ResponseStatus의 code 넣어주기
         val isSuccess: Boolean, // true/false
-        val data: T  //블랙리스트 데이터 존재할 경우, 존재하지 않을경우에 어떻게 데이터 구성할지 정의
+        val data: T 
     )
     ```
     
