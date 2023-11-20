@@ -105,7 +105,7 @@ class SeatServiceImplExceptionTest {
         every { seatRepository.findBySeatNumber(any()) } returns Seat("")
 
 
-        every { employeeSeatRepository.findByEmployeeNumber(any()) } returns employeeReservedData
+        every { employeeSeatRepository.findByEmployeeNumberToday(any()) } returns employeeReservedData
 
         // When & Then
         assertThrows<BusinessException> {
@@ -138,8 +138,8 @@ class SeatServiceImplExceptionTest {
         every { seatRepository.findBySeatNumber(any()) } returns Seat("")
 
 
-        every { employeeSeatRepository.findByEmployeeNumber(any()) } returns null
-        every { employeeSeatRepository.findBySeatNumber(any()) } returns seatReservedData
+        every { employeeSeatRepository.findByEmployeeNumberToday(any()) } returns null
+        every { employeeSeatRepository.findBySeatNumberToday(any()) } returns seatReservedData
 
         // When & Then
         assertThrows<BusinessException> {
@@ -164,8 +164,8 @@ class SeatServiceImplExceptionTest {
         every { seatRepository.count() } returns 2L
         every { employeeRepository.findByEmployeeNumber(any()) } returns Employee("")
         every { seatRepository.findBySeatNumber(any()) } returns Seat("")
-        every { employeeSeatRepository.findByEmployeeNumber(any()) } returns null
-        every { employeeSeatRepository.findBySeatNumber(any()) } returns null
+        every { employeeSeatRepository.findByEmployeeNumberToday(any()) } returns null
+        every { employeeSeatRepository.findBySeatNumberToday(any()) } returns null
 
         every { employeeSeatRepository.findByEmployeeAndSeat(any(), any()) } returns cancelData
 
@@ -188,7 +188,7 @@ class SeatServiceImplExceptionTest {
         every { employeeRepository.findByEmployeeNumber(any()) } returns Employee("")
         every { seatRepository.findBySeatNumber(any()) } returns Seat("")
 
-        every { employeeSeatRepository.findByEmployeeSeatNumber(employeeNumber,seatNumber) } returns null
+        every { employeeSeatRepository.findByEmployeeSeatNumberToday(employeeNumber,seatNumber) } returns null
 
         // When & Then
         assertThrows<BusinessException> {

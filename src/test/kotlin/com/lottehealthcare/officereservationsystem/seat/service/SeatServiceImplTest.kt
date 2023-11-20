@@ -87,13 +87,12 @@ class SeatServiceImplTest {
         every { seatRepository.findBySeatNumber(any()) } returns seat
 
         //check 3-1, 3-2, 4
-        every { employeeSeatRepository.findByEmployeeNumber(any()) } returns null
-        every { employeeSeatRepository.findBySeatNumber(any()) } returns null
+        every { employeeSeatRepository.findByEmployeeNumberToday(any()) } returns null
+        every { employeeSeatRepository.findBySeatNumberToday(any()) } returns null
         every { employeeSeatRepository.findByEmployeeAndSeat(any(), any()) } returns null
 
         //save reservation
         every { employeeSeatRepository.save(any()) } returns newReservation
-
 
 
         // When
@@ -131,7 +130,7 @@ class SeatServiceImplTest {
         )
 
         //check 2
-        every { employeeSeatRepository.findByEmployeeSeatNumber(any(),any()) } returns expectCancelData
+        every { employeeSeatRepository.findByEmployeeSeatNumberToday(any(),any()) } returns expectCancelData
 
         // When
         val cancelReservation = seatService.cancelReservation(cancelReservationInfo)

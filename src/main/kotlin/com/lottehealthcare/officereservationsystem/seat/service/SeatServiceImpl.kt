@@ -45,12 +45,12 @@ class SeatServiceImpl (
         //체크3
         // 3-1 예약자가 이미 좌석을 예약했는지 확인한다. (이미 예약을 했는가?)
         // 사용 불가능(다른 좌석 이미 예약함) - 이미 예약이 완료된 사용자입니다.
-        val employeeReservedData = employeeSeatRepository.findByEmployeeNumber(reservationInfo.employeeNumber)
+        val employeeReservedData = employeeSeatRepository.findByEmployeeNumberToday(reservationInfo.employeeNumber)
             ?.let { throw BusinessException(ErrorMessage.ALREADY_RESERVED_EMPLOYEE) }
 
         // 3-2 좌석이 사용할수 있는지 확인한다. (누가 사용하고 있는가?)
         // 사용 불가능(누군가 사용중) - 이미 예약된 좌석입니다. 다른 좌석을 선택하세요 (응답 반환)
-        val seatReservedData = employeeSeatRepository.findBySeatNumber(reservationInfo.seatNumber)
+        val seatReservedData = employeeSeatRepository.findBySeatNumberToday(reservationInfo.seatNumber)
             ?.let{ throw BusinessException(ErrorMessage.ALREADY_RESERVED_SEAT) }
 
         //체크4) 이미 employee-seat에 데이터가 있는가? (예약자가 예약했던 좌석인가?) --isValid는 true/false 상관없다.
@@ -77,7 +77,7 @@ class SeatServiceImpl (
         verifiedSeat(reservationInfo.seatNumber)
 
         //2) 예약자-좌석 : 실제로 예약되어있는지, isValid = true
-        val cancelData = employeeSeatRepository.findByEmployeeSeatNumber(reservationInfo.employeeNumber, reservationInfo.seatNumber)
+        val cancelData = employeeSeatRepository.findByEmployeeSeatNumberToday(reservationInfo.employeeNumber, reservationInfo.seatNumber)
             ?: throw BusinessException(ErrorMessage.RESERVATION_NOT_FOUND)
 
         //여기까지 왔으면 취소해도 되는 예약!
