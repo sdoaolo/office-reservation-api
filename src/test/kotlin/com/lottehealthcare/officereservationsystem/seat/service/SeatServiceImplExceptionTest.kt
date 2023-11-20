@@ -1,5 +1,6 @@
 package com.lottehealthcare.officereservationsystem.seat.service
 
+import com.lottehealthcare.officereservationsystem.employee.WorkType
 import com.lottehealthcare.officereservationsystem.employee.entity.Employee
 import com.lottehealthcare.officereservationsystem.employee.repository.EmployeeRepository
 import com.lottehealthcare.officereservationsystem.error.ErrorMessage
@@ -12,6 +13,7 @@ import com.lottehealthcare.officereservationsystem.seat.repository.SeatRepositor
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions.assertEquals
 
 class SeatServiceImplExceptionTest {
 
@@ -40,15 +42,22 @@ class SeatServiceImplExceptionTest {
         // Given
         val activeSeats = 2L
         val totalSeats = 2L
+
+        val employee =  Employee("미출근자").apply { currentWorkType = WorkType.미출근 }
+        val employees = listOf(employee)
+
         every { employeeSeatRepository.countByIsValidTrue() } returns activeSeats
         every { seatRepository.count() } returns totalSeats
+        every { employeeRepository.findByCurrentWorkType(WorkType.미출근) } returns employees
 
         // When & Then
+
         assertThrows<BusinessException> {
             seatService.makeReservation(tmpReservationDto)
         }.apply {
             Assertions.assertEquals(ErrorMessage.NO_REMAINING_SEATS, this.errorMessage)
         }
+        assertEquals(WorkType.재택, employee.currentWorkType)
     }
 
     @Test
