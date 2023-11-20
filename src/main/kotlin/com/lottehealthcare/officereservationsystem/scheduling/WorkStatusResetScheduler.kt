@@ -13,7 +13,7 @@ class WorkStatusResetScheduler(
     fun resetEmployeeWorkStatus() {
         val allEmployees = employeeRepository.findAll()
         for (employee in allEmployees) {
-            employee.currentWorkType = WorkType.재택
+            employee.currentWorkType = WorkType.미출근
         }
         employeeRepository.saveAll(allEmployees)
     }
