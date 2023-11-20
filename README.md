@@ -24,7 +24,7 @@ Language
 
 Server
 
-- SpringBoot  **2.7.17
+- SpringBoot  2.7.17
 - Gradle - Kotlin
 
 DB 
@@ -35,7 +35,7 @@ DB
 
 Document 
 
-- Swagger 3.0.0 (API 문서 제작)  → 최신버전
+- Swagger 3.0.0 (API 문서 제작)
 
 Testing
 
