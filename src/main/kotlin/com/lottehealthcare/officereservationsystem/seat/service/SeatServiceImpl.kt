@@ -83,7 +83,7 @@ class SeatServiceImpl (
 
         //여기까지 왔으면 취소해도 되는 예약!
         cancelData.isValid = false
-        employee.currentWorkType = WorkType.재택
+        employee.currentWorkType = WorkType.미출근
 
         return reservationInfo //단순 취소자와 취소된 좌석번호에 대한 정보만 반환해도 되므로 그대로 반환
     }
@@ -106,6 +106,9 @@ class SeatServiceImpl (
         val totalSeats = seatRepository.count()
 
         if (totalSeats - activeSeats < 1) {
+            val employeesNotPresent = employeeRepository.findByCurrentWorkType(WorkType.미출근)
+            employeesNotPresent.forEach { it.currentWorkType = WorkType.재택 }
+
             throw BusinessException(ErrorMessage.NO_REMAINING_SEATS)
         }
     }
