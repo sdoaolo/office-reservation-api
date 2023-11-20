@@ -6,7 +6,8 @@ Assignment, jieun kang 2023-11 (Lotte Healthcare)
 <br><br>
 
 ### 📖 노션 문서로 이동하시면 좀 더 가독성있게 읽으실 수 있습니다. 😄 
-https://capable-ghost-869.notion.site/79dad5303f20457c82a06798534e4f4a?pvs=4
+[https://www.notion.so/79dad5303f20457c82a06798534e4f4a?pvs=4](https://capable-ghost-869.notion.site/79dad5303f20457c82a06798534e4f4a?pvs=4)
+
 
 <br><br>
 
@@ -123,7 +124,7 @@ Testing
 │   │           ├── configuration
 │   │           │   └── querydsl
 │   │           │   └── swagger
-│   │           ├── **employee**
+│   │           ├── employee
 │   │           │   ├── controller
 │   │           │   ├── dto
 │   │           │   ├── entity
@@ -131,7 +132,8 @@ Testing
 │   │           │   └── service
 │   │           ├── error
 │   │           │   └── exception
-│   │           └── **seat**
+│   │           ├── scheduling
+│   │           └── seat
 │   │               ├── controller
 │   │               ├── dto
 │   │               ├── entity
@@ -146,7 +148,11 @@ Testing
     │   └── com
     │       └── lottehealthcare.officereservationsystem
     │           ├── employee
+    │           │   ├── controller
+    │           │   └── service
     │           └── seat
+    │               ├── controller
+    │               └── service
     └── resources
 ```
 
