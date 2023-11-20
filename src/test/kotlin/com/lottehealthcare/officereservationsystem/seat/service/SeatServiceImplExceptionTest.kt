@@ -167,7 +167,7 @@ class SeatServiceImplExceptionTest {
         every { employeeSeatRepository.findByEmployeeNumberToday(any()) } returns null
         every { employeeSeatRepository.findBySeatNumberToday(any()) } returns null
 
-        every { employeeSeatRepository.findByEmployeeAndSeat(any(), any()) } returns cancelData
+        every { employeeSeatRepository.findByEmployeeAndSeatAndReserveDate(any(), any(), any()) } returns cancelData
 
         // When & Then
         assertThrows<BusinessException> {
