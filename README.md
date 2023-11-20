@@ -6,8 +6,7 @@ Assignment, jieun kang 2023-11 (Lotte Healthcare)
 <br><br>
 
 ### 📖 노션 문서로 이동하시면 좀 더 가독성있게 읽으실 수 있습니다. 😄 
-[https://www.notion.so/79dad5303f20457c82a06798534e4f4a?pvs=4](https://capable-ghost-869.notion.site/79dad5303f20457c82a06798534e4f4a?pvs=4)
-
+https://capable-ghost-869.notion.site/79dad5303f20457c82a06798534e4f4a?pvs=4
 
 <br><br>
 
@@ -401,18 +400,7 @@ Body
     }
     ```
     
-6. 이미 예약이 완료된 사용자
-    
-    ```json
-    {
-        "status": "CONFLICT",
-        "message": "This user has already completed a reservation",
-        "code": 409,
-        "isSuccess": false
-    }
-    ```
-    
-7. 오늘 예약했다가 취소한 좌석은 재예약 불가능
+6. 오늘 예약했다가 취소한 좌석은 재예약 불가능
     
     ```json
     {
