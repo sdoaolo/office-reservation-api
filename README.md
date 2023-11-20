@@ -5,14 +5,44 @@ Assignment, jieun kang 2023-11 (Lotte Healthcare)
 
 <br><br>
 
-### 📖 노션 문서로 이동하시면 좀 더 가독성있게 읽으실 수 있습니다. 😄
+### 📖 노션 문서로 이동하시면 좀 더 가독성있게 읽으실 수 있습니다. 😄 
 https://capable-ghost-869.notion.site/79dad5303f20457c82a06798534e4f4a?pvs=4
 
 <br><br>
 
+
+## 🗂 **INDEX**   
+- ✅ 사용 스택
+- ✅ 프로젝트 개요
+- ✅ 요구사항 세부정의
+- ✅ 디렉터리 구조
+- ✅ API
+  - Demo를 위한 추가 API (직원추가, 좌석추가)
+  - 요구사항에 정의된 API (직원근무상태조회, 좌석예약, 예약취소)
+    1. 직원 근무 상태 조회 API - Request, Response
+    2. 좌석 예약 API - Request, Response, Exception
+    3. 예약 취소 API - Request, Response, Exception
+    	
+- ✅ MySQL 테이블 설계
+  - ER Diagram
+    1. 직원 테이블 (employee)
+    2. 직원-좌석 테이블 (employee-seat)
+    3. 좌석 테이블 (seat)
+  - 테이블간 관계
+  - 복합 UNIQUE 제약 조건
+- ✅ Test Coverage
+- ✅ 환경설정 및 데모 방법
+  - setting
+  - Demo (using swagger)
+     - 데모 시나리오 및 사용자 가이드 
+- ✅ Convention
+
+  
+<br>
+
 ---
 
-<br>
+<br><br>
 
 # ✅ 사용 스택
 
