@@ -1,12 +1,12 @@
-package com.lottehealthcare.officereservationsystem.employee
+package com.lottehealthcare.officereservationsystem.employee.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.lottehealthcare.officereservationsystem.common.ResponseStatus
+import com.lottehealthcare.officereservationsystem.employee.WorkType
 import com.lottehealthcare.officereservationsystem.employee.dto.request.RegisterNewEmployeeDto
 import com.lottehealthcare.officereservationsystem.employee.dto.response.CurrentWorkStatusDto
 import com.lottehealthcare.officereservationsystem.employee.dto.response.SimpleImformationEmployeeDto
 import com.lottehealthcare.officereservationsystem.employee.service.EmployeeService
-import com.lottehealthcare.officereservationsystem.seat.controller.EmployeeController
 
 import io.mockk.every
 import io.mockk.mockk

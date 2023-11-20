@@ -1,4 +1,4 @@
-package com.lottehealthcare.officereservationsystem.seat
+package com.lottehealthcare.officereservationsystem.seat.service
 
 import com.lottehealthcare.officereservationsystem.employee.entity.Employee
 import com.lottehealthcare.officereservationsystem.employee.repository.EmployeeRepository
@@ -9,8 +9,6 @@ import com.lottehealthcare.officereservationsystem.seat.entity.EmployeeSeat
 import com.lottehealthcare.officereservationsystem.seat.entity.Seat
 import com.lottehealthcare.officereservationsystem.seat.repository.EmployeeSeatRepository
 import com.lottehealthcare.officereservationsystem.seat.repository.SeatRepository
-import com.lottehealthcare.officereservationsystem.seat.service.SeatService
-import com.lottehealthcare.officereservationsystem.seat.service.SeatServiceImpl
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.*

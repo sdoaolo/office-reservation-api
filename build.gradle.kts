@@ -36,6 +36,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly("com.mysql:mysql-connector-j")
 
+	//document
+	implementation("io.springfox:springfox-swagger-ui:3.0.0")
+	implementation("io.springfox:springfox-boot-starter:3.0.0")
+
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.mockk:mockk:1.13.8")
