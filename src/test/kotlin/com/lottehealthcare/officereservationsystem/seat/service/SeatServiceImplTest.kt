@@ -89,7 +89,7 @@ class SeatServiceImplTest {
         //check 3-1, 3-2, 4
         every { employeeSeatRepository.findByEmployeeNumberToday(any()) } returns null
         every { employeeSeatRepository.findBySeatNumberToday(any()) } returns null
-        every { employeeSeatRepository.findByEmployeeAndSeat(any(), any()) } returns null
+        every { employeeSeatRepository.findByEmployeeAndSeatAndReserveDate(any(), any(), any()) } returns null
 
         //save reservation
         every { employeeSeatRepository.save(any()) } returns newReservation

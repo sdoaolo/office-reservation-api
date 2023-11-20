@@ -14,6 +14,7 @@ import com.lottehealthcare.officereservationsystem.seat.entity.Seat
 import com.lottehealthcare.officereservationsystem.seat.repository.EmployeeSeatRepository
 import com.lottehealthcare.officereservationsystem.seat.repository.SeatRepository
 import org.springframework.stereotype.Service
+import java.time.LocalDate
 import javax.transaction.Transactional
 
 @Service
@@ -55,7 +56,7 @@ class SeatServiceImpl (
 
         //체크4) 이미 employee-seat에 데이터가 있는가? (예약자가 예약했던 좌석인가?) --isValid는 true/false 상관없다.
         //4-1 존재하는 경우 - 예약했다 취소한 좌석은 다시 예약할 수 없습니다. (응답 반환)
-        val cancelData = employeeSeatRepository.findByEmployeeAndSeat(employee, seat)
+        val cancelData = employeeSeatRepository.findByEmployeeAndSeatAndReserveDate(employee, seat, LocalDate.now())
             ?.let{ throw BusinessException(ErrorMessage.CANNOT_RE_RESERVE) }
 
         val newReservation = EmployeeSeat(
