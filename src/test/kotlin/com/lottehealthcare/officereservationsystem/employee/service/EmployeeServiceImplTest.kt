@@ -90,8 +90,8 @@ class EmployeeServiceImplTest {
         )
 
         every { employeeRepository.findAll(pageRequest) } returns employeePage
-        every { employeeSeatRepository.findByEmployeeNumber(1) } returns employeeSeat
-        every { employeeSeatRepository.findByEmployeeNumber(2) } returns null
+        every { employeeSeatRepository.findByEmployeeNumberToday(1) } returns employeeSeat
+        every { employeeSeatRepository.findByEmployeeNumberToday(2) } returns null
 
         // When
         val result = employeeService.getAllEmployeeWorkStatus(page)
@@ -116,6 +116,6 @@ class EmployeeServiceImplTest {
         }
 
         verify(exactly = 1) { employeeRepository.findAll(pageRequest) }
-        verify(atLeast = 1) { employeeSeatRepository.findByEmployeeNumber(any()) }
+        verify(atLeast = 1) { employeeSeatRepository.findByEmployeeNumberToday(any()) }
     }
 }

@@ -33,7 +33,7 @@ class EmployeeServiceImpl (
         return employeePage.map { employee ->
             var seatNumber: Short? = null
             if(employee.currentWorkType == WorkType.오피스출근){
-                seatNumber = employeeSeatRepository.findByEmployeeNumber(employee.employeeNumber)?.seat?.seatNumber
+                seatNumber = employeeSeatRepository.findByEmployeeNumberToday(employee.employeeNumber)?.seat?.seatNumber
             }
             CurrentWorkStatusDto.fromEntity(employee, seatNumber)
         }
