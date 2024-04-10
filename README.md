@@ -1,35 +1,25 @@
 # office-reservation-api
-Assignment, jieun kang 2023-11 (Lotte Healthcare)
-
-
-
-<br><br>
-
-### 📖 노션 문서로 이동하시면 좀 더 가독성있게 읽으실 수 있습니다. 😄 
-https://capable-ghost-869.notion.site/79dad5303f20457c82a06798534e4f4a?pvs=4
-
-<br><br>
 
 
 ## 🗂 **INDEX**   
-- ✅ 사용 스택
-- ✅ 프로젝트 개요
-- ✅ 요구사항 세부정의
-- ✅ 디렉터리 구조
+- ✅ Architecture & Stack
+- ✅ Project : Server of Office Reservation System
+- ✅ Detailed Requirements Definition
+- ✅ Structure of Directory 
 - ✅ API
-  - Demo를 위한 추가 API (직원추가, 좌석추가)
-  - 요구사항에 정의된 API (직원근무상태조회, 좌석예약, 예약취소)
-    1. 직원 근무 상태 조회 API - Request, Response
-    2. 좌석 예약 API - Request, Response, Exception
-    3. 예약 취소 API - Request, Response, Exception
+  - Additional API (for DEMO) (Employee Registration, Seat Registration)
+  - Defined API
+    1. View All Employee Work Status API - Request, Response
+    2. Seat Reservation API - Request, Response, Exception
+    3. Cancel Seat Reservation API - Request, Response, Exception
     	
-- ✅ MySQL 테이블 설계
+- ✅ Database Design (MySQL)
   - ER Diagram
-    1. 직원 테이블 (employee)
-    2. 직원-좌석 테이블 (employee-seat)
-    3. 좌석 테이블 (seat)
-  - 테이블간 관계
-  - 복합 UNIQUE 제약 조건
+    1. Table : employee
+    2. Table : employee-seat
+    3. Table : seat
+  - Relationships between Tables
+  - Compound UNIQUE Constraints
 - ✅ Test Coverage
 - ✅ 환경설정 및 데모 방법
   - setting
@@ -44,9 +34,13 @@ https://capable-ghost-869.notion.site/79dad5303f20457c82a06798534e4f4a?pvs=4
 
 <br><br>
 
-# ✅ 사용 스택
+# ✅ Architecture & Stack
 
-![image](https://github.com/sdoaolo/office-reservation-api/assets/48430781/2322ab02-9c47-4fe1-a4af-3b81c18dcf22)
+
+<img width="600" alt="Architecture" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/81eea9c1-46ac-4e24-86aa-c0d3bd4398a0">
+
+
+<br><br>
 
 Language
 
@@ -72,36 +66,32 @@ Testing
 - MockK (Mockiing Library)
 - IntelliJ (Test Coverage)
 
+<br><br>
+
+# ✅ **Server of Office Reservation System**
+
+- View All Employee Work Status API
+- Seat Reservation API
+- Cancel Seat Reservation API
+
 <br>
 
-# ✅ 프로젝트 개요
+# ✅ **Detailed Requirements Definition**
 
-- Office Reservation System 서버 API 개발
-    - 직원들의 현재 근무 상태 확인
-    - 좌석 예약
-    - 예약 취소
+- There are a total of **100 seats** available (1~100).
+- Each **employee can reserve** only **[one seat].**
+- Each **seat can be used** by only **[one employee]**.
+- Total number of **employees: 150.**
+- **Work Status: In-office / Remote / Vacation / No show.**
+    - **Additinal Definition**
+    - Reservation cancellation: Change the status of the employee who cancelled to [No show].
+    - Successful reservation: Change the status of the employee who succeeded to [In-office].
+    - When all seats are reserved: Change the status of employees who didn't show up to [Remote].
+    - Every day at 12 AM: Change the status of all employees to [No show].
+    - Adding an employee: When adding employee data, set the default status to [No show].
+- When all seats are reserved, employees who did not reserve a seat are automatically assigned to work remotely.
+- If there are remaining seats, employees can reserve a seat.
 
-<br>
-
-# ✅ 요구사항 세부 정의
-
-- 좌석 번호는 1부터 100까지 있으며 좌석은 총 100개가 있습니다.
-- 직원은 1개의 좌석만 예약이 가능합니다.
-- 좌석은 1명의 직원만 사용 가능합니다.
-- 총 직원 수는 150명 입니다.
-- 근무형태는 오피스 출근, 재택, 휴가 세가지가 있습니다.
-    
-    → 근무형태에 미출근을 추가했습니다.
-    
-    - 예약 취소: 취소한 직원의 상태를 미출근으로 변경
-    - 예약 성공: 성공한 직원의 상태를 오피스출근으로 변경
-    - 좌석이 모두 예약됨: 미출근 상태의 직원을 재택으로 변경
-    - 매일 오전 12시: 모든 직원의 상태를 미출근으로 변경
-    - 직원 추가 : 직원 데이터 추가될 때 기본 상태를 미출근으로 설정
-- 좌석이 모두 예약되는 경우, 예약하지 못한 직원은 자동으로 재택근무 형태가 지정됩니다.
-- 좌석이 남는 경우는 가능합니다.
-    
-    → “좌석이 남는 경우에 좌석 예약이 가능합니다”로 이해했습니다.
     
 <br>
 
@@ -109,13 +99,13 @@ Testing
 
 <br>
 
-# ✅ 디렉터리 구조
+# ✅ Structure of Directory 
 
 ```bash
 ├── main
 │   ├── kotlin
 │   │   └── com
-│   │       └── lottehealthcare.officereservationsystem
+│   │       └── sdoaolo.officereservationsystem
 │   │           ├── OfficeReservationSystemApplication.kt
 │   │           ├── aop
 │   │           ├── common
@@ -145,7 +135,7 @@ Testing
 └── test
     ├── kotlin
     │   └── com
-    │       └── lottehealthcare.officereservationsystem
+    │       └── sdoaolo.officereservationsystem
     │           ├── employee
     │           │   ├── controller
     │           │   └── service
@@ -159,56 +149,55 @@ Testing
 
 # ✅ API
 
-- 모든 api endpoingt는  `/api/v1/` 으로 시작합니다.
-- ApplicationResponseDto - 공통 응답 형태
+- All API endpoints start with   `/api/v1/`
+- `ApplicationResponseDto`  (common response type)
     
     ```kotlin
     data class ApplicationResponseDto<T>(
         val status: ResponseStatus, //Enum class
-        val message: String, //응답 커스텀 메세지 
-        val code : Long?, //ResponseStatus의 code 넣어주기
-        val isSuccess: Boolean, // true/false
-        val data: T 
+    	val message: String, //custom message
+    	val code : Long?, //ResponseStatus' code
+    	val isSuccess: Boolean, // true/false
+    	val data: T 
     )
     ```
     
 <br>
 
-### ✚ DEMO를 위한 추가 API
+### Additional API  (for DEMO)
 
 | name | Method | End point | param / body |
 | --- | --- | --- | --- |
-| 직원 등록 | POST | /seats | { "name" : "강지은" } |
-| 좌석 등록 | POST  | /seats | { "seatLocation" : "롯데월드타워 27F Room A” } |
+| Employee Registration | POST | /seats | { "name" : "강지은" } |
+| Seat Registration | POST  | /seats | { "seatLocation" : "롯데월드타워 27F Room A” } |
 
 <br>
 
-### 📝 요구사항에 정의 된 API
-
+### 📝 Defined API
 | name | Method | End point | param / body |
 | --- | --- | --- | --- |
-| 전 직원 근무형태 현황 조회  | GET | /employees/work-status | ?page={페이지번호} |
-| 좌석 예약 | POST | /seats/reservations | { "employeeNumber": 7, "seatNumber": 19 } |
-| 예약 취소 | DELETE  | /seats/reservations | { "employeeNumber": 7, "seatNumber": 19 } |
+| View All Employee Work Status   | GET | /employees/work-status | ?page=1 |
+| Seat Reservation | POST | /seats/reservations | { "employeeNumber": 7, "seatNumber": 19 } |
+| Cancel Seat Reservation | DELETE  | /seats/reservations | { "employeeNumber": 7, "seatNumber": 19 } |
 
 <br>
 
-## 1️⃣ 전 직원 근무형태 현황 조회 API
+## 1️⃣ View All Employee Work Status  API
 
-- 모든 직원의 근무형태를 조회합니다.
-    - 오피스 출근 직원의 경우 좌석번호를 함께 제공합니다.
-- 20명씩 페이지네이션 처리합니다.
+- Check the work status of all employees.
+    - For employees whose work mode is "in-office," their seat numbers are also provided.
+- Implement pagination to display 20 people per page.
 
-<img width="2026" alt="API Flow 01" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/b2afc158-7de1-4490-84b4-606514c8b7b0">
+
+<img width="800" alt="API Flow 전 직원 근무형태 조회" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/63d8f2f2-c819-466d-be91-3aca728e19b0">
+
 
 ### ⏺ Request
 
 Header
-
-<aside>
-➡️ **GET    /employees/work-status?page=1**
-
-</aside>
+```
+GET    /employees/work-status?page=1
+```
 
 ### ⏺ Response
 
@@ -258,29 +247,33 @@ Header
 
 <br>
 
-## 2️⃣ 좌석 예약 API
+## 2️⃣ Seat Reservation API
 
-- 직원은 본인이 사용할 좌석을 예약합니다.
-- 여러 직원이 동시에 같은 좌석을 예약할 수 없습니다.
-    - 동시성 제어 구현 PR (https://github.com/sdoaolo/office-reservation-api/pull/12)
+- Employees reserve seats for today.
+- Multiple employees cannot reserve the same seat at the same time
+    - Implement concurrency control.  
 
-<img width="2026" alt="API Flow 2" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/79195e5f-b0ff-4d49-9c2f-ad84fb40aa03">
+	PR (https://github.com/sdoaolo/office-reservation-api/pull/12)
+        https://jie0025.tistory.com/604
+
+  
+<img width="800" alt="API Flow 좌석 예약" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/d0d80c09-5bc1-49eb-b729-95e064266fbf">
+
 
 ### ⏺ Request
 
 Header
 
-<aside>
-➡️ **POST    /seats/reservations**
-
-</aside>
+```
+POST    /seats/reservations
+```
 
 Body
 
 ```json
 {
-    "employeeNumber": 1, //예약자의 번호 
-		"seatNumber": 2 //예약하려는 좌석 번호
+	"employeeNumber": 1, //Number of Employee
+	"seatNumber": 2 //Number of the seat the employee wants to reserve
 }
 ```
 
@@ -301,7 +294,7 @@ Body
 
 ### ⏺ Exception
 
-1. 유효 범위를 벗어났을 때
+1. Out of the effective range
     
     employeeNumber (1~150), seatNumber(1~100)
     
@@ -326,7 +319,7 @@ Body
         ```
         
 
-1. 데이터 자체를 잘못 넣었을 때
+2. Data entered incorrectly    
     - request
         
         ```json
@@ -347,7 +340,7 @@ Body
         }
         ```
         
-2. 데이터가 존재하지 않음
+3. No data exists    
     
     ```json
     {
@@ -367,7 +360,7 @@ Body
     }
     ```
     
-3. 남은 좌석이 없음
+4. No seats available 
     
     ```json
     {
@@ -378,7 +371,7 @@ Body
     }
     ```
     
-4. 이미 예약된 좌석
+5. Seat already reserved
     
     ```json
     {
@@ -389,7 +382,7 @@ Body
     }
     ```
     
-5. 이미 예약이 완료된 사용자
+6. User has already made a reservation
     
     ```json
     {
@@ -400,7 +393,7 @@ Body
     }
     ```
     
-6. 오늘 예약했다가 취소한 좌석은 재예약 불가능
+7. Seats canceled today cannot be rebooked
     
     ```json
     {
@@ -417,29 +410,32 @@ Body
 
 <br>
 
-## 3️⃣ 예약 취소 API
+## 3️⃣ **API : Cancel Seat Reservation**
 
-- 예약을 취소하면 다른 직원이 해당 좌석을 예약할 수 있습니다.
-- 동일한 좌석은 하루에 1번만 예약이 가능합니다.
-  
-<img width="2026" alt="API Flow 3" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/408ef04c-607f-4519-a72e-6ce623caa30a">
+- If an employee cancels their reservation, another employee can reserve the seat.
+- If a seat is canceled by any employee, it cannot be re-booked on the same day.
+
+<br>
+
+ <img width="800" alt="API Flow 좌석 예약 취소" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/ac009f2a-318a-464e-8fa9-31d934567889">
+
+<br>
 
 
 ### ⏺ Request
 
 Header
 
-<aside>
-➡️ **DELETE    /seats/reservations**
-
-</aside>
+```
+DELETE    /seats/reservations
+```
 
 Body
 
 ```json
 {
-    "employeeNumber": 1, //예약자의 번호 
-		"seatNumber": 1 //취소하려는 좌석 번호
+    "employeeNumber": 1, //The Employee Number
+    "seatNumber": 2 //The seat number the employee wishes to cancel
 }
 ```
 
@@ -460,7 +456,7 @@ Body
 
 ### ⏺ Exception
 
-1. 예약 정보가 없음 
+1.  No data(reservation) exists 
     
     ```json
     {
@@ -474,89 +470,100 @@ Body
 <br>
 
 
-# ✅ MYSQL 테이블 설계
+# ✅ **Database Design (MySQL)**
 
 ### ⏺ ER-Diagram
 
 ![image](https://github.com/sdoaolo/office-reservation-api/assets/48430781/5a41c21e-69cb-4ddc-96e3-ae76fdac9bb1)
 
-### a. 직원(Employee) 테이블
 
-- employeeId: 고유 ID
-    - Primary Key (별도키)
+### **. Table : employee**
+
+- employeeId
+    - Primary Key
     - BIGINT AUTO INCREMENT
-- name: 성이름
+- name
     - VARCHAR(20)
     - NOT NULL
-- employeeNumber - 직원 고유 번호 (1~150)
+- employeeNumber - (1~150)
     - NOT NULL
     - SMALLINT
-- currentWorkType: 현재 근무 형태
+- currentWorkType
     - VARCHAR(255)
-    - ‘오피스’, ‘재택’, ‘휴가’, ‘미출근’
-- created_date : 직원이 입사한 날짜
+    - **In-office / Remote / Vacation / No show**
+- created_date : Date the employee's account was created
     - DATE
 
-### b. 직원-좌석(employee-seat) 테이블
+### **b. Table : employee-seat**
 
 - id
     - Primary Key
     - BIGINT AUTO_INCREMENT
-- employee_id : FK 
-(from Employees테이블- employeeId)
+- employee_id : FK (from Employees_employeeId)
     - INT
     - employee : employee_seat = 1: N
-- seatId : FK (from seats테이블- seatId)
+- seatId : FK (from seats_seatId)
     - INT
     - seat : employee_seat = 1: N
-        - 직원은 예약데이터가 여러개 있을 수 있다 (UNIQUE(날짜/직원/좌석)에 의해)
-        - 예약데이터 1개는 좌석 1개에 매핑된다.
-- isValid: 유효한 예약 상태인지
+- isValid (It will notify you if the reservation is valid.)
     - BOOLEAN
-    - 예약 = 1, 취소된 예약 = 0
-- reserve_date : 예약이 된 날짜
+    - Current Reservation (Valid)
+    - Canceled Reservation (Invalid)
+- reserve_date
     - DATE
 
-### c. 좌석(seat) 테이블
+### **c. Table : seat**
 
-- seatId: 좌석 ID
-    - PK (별도키)
+- seatId
+    - PK
     - BIGINT AUTO INCREMENT
 - seatLocation
     - VARCHAR(50)
-        - 방 번호는 숫자/문자 혹은 둘의 조합일 수도 있다.
-            - ex) 에비뉴엘 6F 30, 롯데월드타워 27F 4
-
-- seatNumber 좌석 고유 번호 (1~100)
+        - Room numbers can consist of numbers, letters, or a combination of both.
+            - Example) AA Building 3F 20, BBB Tower 6F 4
+- seatNumber (1~100)
     - NOT NULL
     - SMALLINT
-- created_date : 좌석이 생겨난 날짜
+- created_date (Date the seat was created)
     - DATE
+ 
 
-### ⏺ 테이블 간 관계
+<br>
 
-Ref: employee_seat.employee_id > employees.employeeId
 
-- many-to-one
-- 직원은 여러개의 예약정보를 만들 수 있다.
-- 예약데이터 1개는 직원 1개에 매핑된다.
+### **⏺ Relationships between Tables**
 
-Ref: employee_seat.seatId > seats.seatId
+**Ref: 
+employee_seat.employee_id > employees.employeeId**
 
-- many-to-one
-- 좌석은 여러개의 예약정보에 들어갈 수 있다.
-- 예약데이터 1개는 좌석 1개에 매핑된다.
+- Many-to-One Relationship:
+    - Employees can create multiple entries of reservation information.
+    - Each reservation record is associated with a single employee.
 
-### ⏺ 복합 UNIQUE 제약 조건
+**Ref: employee_seat.seatId > seats.seatId**
 
-- 직원이 하루에 한 좌석에 대해서만 유효한 예약을 할 수 있도록 설정
-- UNIQUE 설정 : reserve_date, employee_id, seat_id
+- Many-to-One Relationship:
+    - A single seat can be associated with multiple reservation records.
+    - Each reservation record is associated with a single seat.
+
+### ⏺ **Compound UNIQUE Constraints**
+
+- To ensure that employees can make valid reservations for only one seat per day, a compound UNIQUE constraint has been applied.
+- UNIQUE Constraint Settings: reserve_date, employee_id, seat_id.
 
 ![image](https://github.com/sdoaolo/office-reservation-api/assets/48430781/a4a0573a-5fe3-445f-87c4-1b34e741426c)
 
-> "직원"이 다른 "좌석"은 "같은날"에 예약하는것은 가능합니다.
 
-> 비즈니스 로직을 통해 isValis를 체크함으로써 직원이 여러개의 좌석을 예약할 수 없도록 구현했습니다.
+> It is possible to reserve different seats for different employees on the same day.
+> 
+
+> Through business logic validation (isValid check), we have implemented a system that prevents employees from making multiple reservations for seats
+>
+
+
+
+
+
 
 
 <br>
@@ -567,13 +574,13 @@ Ref: employee_seat.seatId > seats.seatId
 
 # ✅ Test Coverage
 
-- Controller와 Service단의 단위테스트를 진행했습니다.
-    
-![image](https://github.com/sdoaolo/office-reservation-api/assets/48430781/8eadad79-214b-4dd6-a30a-9537c7987d63)
+- Unit testing of the Controller and Service units is conducted.
 
-- 테스트 커버리지는 IntelliJ에서 확인했습니다.
+<img width="600" alt="test_contents" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/8eadad79-214b-4dd6-a30a-9537c7987d63">
+
+- Test coverage has been verified using the IntelliJ
     
-![image](https://github.com/sdoaolo/office-reservation-api/assets/48430781/52f6e094-fb22-495c-94b1-79fbce326cc9)
+<img width="800" alt="test_intelliJ" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/52f6e094-fb22-495c-94b1-79fbce326cc9">
 
 <br>
 
@@ -597,7 +604,8 @@ Ref: employee_seat.seatId > seats.seatId
 
 - SpringBoot
     - src > main > resources 아래에 application.yml을 추가해주세요
-    ![image](https://github.com/sdoaolo/office-reservation-api/assets/48430781/a54541de-582c-47c8-9334-eed7893a501a)
+<img width="600" alt="springboot_yml" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/a54541de-582c-47c8-9334-eed7893a501a">
+
 
     - application.yml
         - `username`과 `password` 설정을 해주세요
@@ -635,7 +643,7 @@ Ref: employee_seat.seatId > seats.seatId
     
 3. [데모 시나리오 및 사용자 가이드]를 따라 데모를 진행합니다.
 
-<img width="989" alt="스크린샷 2023-11-20 오후 6 36 40" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/826daf5b-d51d-4bfd-9be9-9be8ead1fe1d">
+<img width="1000" alt="group" src="https://github.com/sdoaolo/office-reservation-api/assets/48430781/4f54b91f-e383-4205-9287-14c822903c5b">
 
 
 ### 📝  데모 시나리오 및 사용자 가이드
