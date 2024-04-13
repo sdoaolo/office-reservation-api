@@ -18,7 +18,7 @@ allOpen {
 	annotation("javax.persistence.Entity")
 }
 
-group = "com.lottehealthcare"
+group = "com.sdoaolo"
 version = "0.0.1-SNAPSHOT"
 
 java {
